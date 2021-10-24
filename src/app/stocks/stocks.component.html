@@ -1,0 +1,15 @@
+<div *ngIf="stock">
+    <h2>{{stock.ticker }} Details</h2>
+    <div><span>ticker: </span>{{stock.ticker}}</div>
+    <div>
+        <label for="ticker">Stock </label>
+        <input id="ticker" [(ngModel)]="stock.ticker" placeholder="ticker">
+    </div>
+</div>
+
+<h2>Stocks</h2>
+<ul class="stocks">
+    <li *ngFor="let stock of stocks" (click)="onSelect(stock)">
+        <span class="stock">{{stock.id}}</span> {{stock.ticker}}
+    </li>
+</ul>
