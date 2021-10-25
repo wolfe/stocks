@@ -15,4 +15,10 @@ export class StockService {
     this.messageService.add("StockService: fetched stocks");
     return stocks;
   }
+
+  getStock(id: number): Observable<Stock> {
+    const stock = STOCKS.find(s => s.id === id)!;
+    this.messageService.add(`StockService: fetch stock ${stock.ticker}`);
+    return of(stock);
+  }
 }

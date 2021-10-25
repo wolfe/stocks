@@ -10,15 +10,9 @@ import { MessageService } from '../message.service';
 })
 export class StocksComponent implements OnInit {
   stocks: Stock[] = [];
-  selectedStock?: Stock;
 
   constructor(private stockService: StockService,
     private MessageService: MessageService) {}
-
-  onSelect(stock: Stock): void {
-    this.selectedStock = stock;
-    this.MessageService.add(`StocksComponent: Selected stock ${stock.ticker}`);
-  }
 
   ngOnInit(): void {
     this.stockService.getStocks().subscribe((stocks) => (this.stocks = stocks));

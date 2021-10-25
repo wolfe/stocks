@@ -1,6 +1,6 @@
 <h2>Stocks</h2>
 <div class="stocks-menu">
-  <a *ngFor="let stock of stocks">
+  <a *ngFor="let stock of stocks" routerLink="/stocks/{{stock.id}}">
     {{stock.ticker}}
   </a>
 </div>
