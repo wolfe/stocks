@@ -2,12 +2,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Stock } from '../stock';
-import { StockService } from '../stock.service';
+import { StockService } from '../services/stock.service';
 
 @Component({
   selector: 'app-stock-detail',
   templateUrl: './stock-detail.component.html',
-  styleUrls: ['./stock-detail.component.scss'],
 })
 export class StockDetailComponent implements OnInit {
   @Input() stock?: Stock;

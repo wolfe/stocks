@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../stock';
-import { StockService } from '../stock.service';
-import { MessageService } from '../message.service';
+import { StockService } from '../services/stock.service';
+import { MessageService } from 'src/app/message.service';
 
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
-  styleUrls: ['./stocks.component.scss'],
 })
 export class StocksComponent implements OnInit {
   stocks: Stock[] = [];

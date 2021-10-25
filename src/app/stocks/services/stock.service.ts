@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Stock } from './stock';
-import { MessageService } from './message.service';
+import { Stock } from '../stock';
+import { MessageService } from 'src/app/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 
