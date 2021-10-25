@@ -4,12 +4,10 @@ import { Stock } from './stock';
 import { STOCKS } from './stocks-test';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class StockService {
-
-  constructor() { }
+  constructor() {}
 
   getStocks(): Observable<Stock[]> {
     const stocks = of(STOCKS);
