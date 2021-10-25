@@ -10,10 +10,10 @@ import { STOCKS } from '../stocks-test';
 })
 export class StocksComponent implements OnInit {
   stocks = STOCKS;
-  stock?: Stock;
+  selectedStock?: Stock;
 
   onSelect(stock: Stock): void {
-    this.stock = stock;
+    this.selectedStock = stock;
   }
 
   constructor() { }
