@@ -17,4 +17,18 @@ export class StocksComponent implements OnInit {
   ngOnInit(): void {
     this.stockService.getStocks().subscribe((stocks) => (this.stocks = stocks));
   }
+
+  create(ticker: string): void {
+    ticker = ticker.trim();
+    if (!ticker) {return;}
+    this.stockService.createStock({ ticker} as Stock)
+    .subscribe(stock => {
+      this.stocks.push(stock);
+    })
+  }
+
+  delete(stock: Stock): void {
+    this.stocks = this.stocks.filter(s => s !== stock);
+    this.stockService.deleteStock(stock.id).subscribe();
+  }
 }

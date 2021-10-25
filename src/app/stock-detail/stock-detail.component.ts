@@ -29,6 +29,13 @@ export class StockDetailComponent implements OnInit {
 
   }
 
+  save(): void {
+    if (this.stock) {
+      this.stockService.updateStock(this.stock)
+        .subscribe(() => this.goBack());
+    }
+  }
+
   goBack(): void {
     this.location.back();
   }

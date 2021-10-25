@@ -4,5 +4,16 @@
     <a routerLink="/stocks/{{ stock.id }}">
       <span class="stock">{{ stock.id }}</span> {{ stock.ticker }}
     </a>
+    <button class="delete" title="delete stock" (click)="delete(stock)">x</button>
   </li>
 </ul>
+
+<div>
+  <label for="new-stock">Stock ticker: </label>
+  <input id="new-stock" #stockTicker />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="create(stockTicker.value); stockTicker.value=''">
+    Add hero
+  </button>
+</div>
