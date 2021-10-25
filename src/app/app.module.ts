@@ -10,13 +10,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { StocksComponent } from './stocks/stocks.component';
 import { StockDetailComponent } from './stock-detail/stock-detail.component';
 import { MessagesComponent } from './messages/messages.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StocksComponent,
     StockDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
