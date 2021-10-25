@@ -11,6 +11,9 @@ import { StockDetailComponent } from './stocks/components/stock-detail.component
 import { MessagesComponent } from './messages/messages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 // In-memory DB stuff to be replaced with a real DB
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -34,7 +37,10 @@ import { InMemoryDataService } from './in-memory-data.service';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, {dataEncapsulation: false},
-    )
+    ),
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

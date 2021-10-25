@@ -1,4 +1,4 @@
-export enum Currency {USD, CAD}
+export enum Currency {USD='USD', CAD='CAD'}
 
 export interface Stock {
     id: number;

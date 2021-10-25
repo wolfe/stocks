@@ -6,9 +6,11 @@ import { MessageService } from 'src/app/message.service';
 @Component({
   selector: 'app-stocks',
   templateUrl: './stocks.component.html',
+  styleUrls: [ './stocks.component.scss' ],
 })
 export class StocksComponent implements OnInit {
   stocks: Stock[] = [];
+  displayedColumns: string[] = ['ticker', 'datePurchased', 'shares', 'currency', 'costBasis', 'delete'];
 
   constructor(private stockService: StockService,
     private MessageService: MessageService) {}
@@ -20,14 +22,12 @@ export class StocksComponent implements OnInit {
   create(ticker: string): void {
     ticker = ticker.trim();
     if (!ticker) {return;}
-    this.stockService.createStock({ ticker} as Stock)
-    .subscribe(stock => {
-      this.stocks.push(stock);
-    })
+    this.stockService.createStock({ ticker} as Stock).subscribe(
+      stock => this.stocks = [...this.stocks, stock])
   }
 
   delete(stock: Stock): void {
-    this.stocks = this.stocks.filter(s => s !== stock);
-    this.stockService.deleteStock(stock.id).subscribe();
+    this.stockService.deleteStock(stock.id).subscribe(
+      _ => { this.stocks = this.stocks.filter(o => o.id !== stock.id)});
   }
 }
