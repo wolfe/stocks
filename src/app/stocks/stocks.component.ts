@@ -1,7 +1,6 @@
-import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { Stock, Currency } from '../stock';
-import { STOCKS } from '../stocks-test';
+import { Stock } from '../stock';
+import { StockService } from '../stock.service';
 
 @Component({
   selector: 'app-stocks',
@@ -9,16 +8,16 @@ import { STOCKS } from '../stocks-test';
   styleUrls: ['./stocks.component.scss']
 })
 export class StocksComponent implements OnInit {
-  stocks = STOCKS;
+  stocks: Stock[] = [];
   selectedStock?: Stock;
+
+  constructor(private stockService: StockService) { }
 
   onSelect(stock: Stock): void {
     this.selectedStock = stock;
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+    this.stockService.getStocks().subscribe(stocks => this.stocks = stocks);
   }
-
 }
