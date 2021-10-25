@@ -9,12 +9,14 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { StocksComponent } from './stocks/stocks.component';
 import { StockDetailComponent } from './stock-detail/stock-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StocksComponent,
-    StockDetailComponent
+    StockDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
