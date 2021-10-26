@@ -10,7 +10,7 @@ import { MessageService } from 'src/app/message.service';
 })
 export class StocksComponent implements OnInit {
   stocks: Stock[] = [];
-  displayedColumns: string[] = ['ticker', 'datePurchased', 'shares', 'currency', 'costBasis', 'delete'];
+  displayedColumns: string[] = ['ticker', 'datePurchased', 'shares', 'currency', 'basis', 'delete'];
 
   constructor(private stockService: StockService,
     private MessageService: MessageService) {}
@@ -24,6 +24,10 @@ export class StocksComponent implements OnInit {
     if (!ticker) {return;}
     this.stockService.createStock({ ticker} as Stock).subscribe(
       stock => this.stocks = [...this.stocks, stock])
+  }
+
+  open(id: number): void {
+
   }
 
   delete(stock: Stock): void {

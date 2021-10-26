@@ -4,6 +4,9 @@
   <ng-container matColumnDef="delete">
     <th mat-header-cell *matHeaderCellDef>  </th>
     <td mat-cell *matCellDef="let stock">
+      <a mat-icon-button color="primary" title="Edit {{stock.ticker}}" routerLink="/stocks/{{stock.id}}">
+        <mat-icon>edit</mat-icon>
+      </a>
       <button mat-icon-button color="primary" title="Delete {{stock.ticker}}" (click)="delete(stock)">
         <mat-icon>delete</mat-icon>
       </button>
@@ -17,7 +20,7 @@
 
   <ng-container matColumnDef="shares">
     <th mat-header-cell *matHeaderCellDef> Shares </th>
-    <td mat-cell *matCellDef="let stock"> {{stock.shares}} </td>
+    <td mat-cell *matCellDef="let stock"> {{stock.shares}}</td>
   </ng-container>
 
   <ng-container matColumnDef="currency">
@@ -25,15 +28,16 @@
     <td mat-cell *matCellDef="let stock"> {{stock.currency}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="costBasis">
+  <ng-container matColumnDef="basis">
     <th mat-header-cell *matHeaderCellDef> Basis </th>
-    <td mat-cell *matCellDef="let stock"> {{stock.costBasis}} </td>
+    <td mat-cell *matCellDef="let stock"> {{stock.basis}} </td>
   </ng-container>
 
   <ng-container matColumnDef="datePurchased">
     <th mat-header-cell *matHeaderCellDef> Purchased </th>
-    <td mat-cell *matCellDef="let stock"> {{stock.datePurchased}} </td>
+    <td mat-cell *matCellDef="let stock"> {{stock.datePurchased}}</td>
   </ng-container>
+
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
