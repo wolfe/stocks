@@ -1,3 +1,4 @@
+import { stocksReducer } from './state/stocks.reducer';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { StockDetailComponent } from './stocks/components/stock-detail.component';
 import { StoreModule } from '@ngrx/store';
+import { StockListComponent } from './stocks/components/stock-list.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { StoreModule } from '@ngrx/store';
     StocksComponent,
     MessagesComponent,
     StockFormComponent,
-    StockDetailComponent
+    StockDetailComponent,
+    StockListComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,7 @@ import { StoreModule } from '@ngrx/store';
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ stocks: stocksReducer}),
   ],
   providers: [],
   bootstrap: [AppComponent]
