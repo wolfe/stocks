@@ -2,3 +2,6 @@
 
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+
+<h2>stocks</h2>
+<app-stock-list class="book-list" [stocks]="stocks$ | async" (add)="onAdd($event)"></app-stock-list>
