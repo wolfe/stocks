@@ -6,6 +6,7 @@ import { StocksComponent } from './stocks/components/stocks.component';
 const routes: Routes = [
   { path: '', redirectTo: '/stocks', pathMatch: 'full' },
   { path: 'stocks', component: StocksComponent },
+  { path: 'stocks/create', component: StockDetailComponent },
   { path: 'stocks/:id', component: StockDetailComponent }
 ];
 

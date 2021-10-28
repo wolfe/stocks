@@ -2,8 +2,6 @@ import { Currency, Stock } from './../stock';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-// TODO:  How to use the same form for create & update?
-
 @Component({
   selector: 'app-stock-form',
   templateUrl: './stock-form.component.html',
@@ -20,7 +18,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 export class StockFormComponent {
   @Input() stock?: Stock;
-  @Output() stockSaved = new EventEmitter<Stock>();
+  @Output() saved = new EventEmitter<Stock>();
+  @Output() canceled = new EventEmitter();
 
   stockForm = new FormGroup({
     shares: new FormControl(),
@@ -41,7 +40,11 @@ export class StockFormComponent {
     return (this.stock && new Date(this.stock.datePurchased)) || new Date();
   }
 
+  onCancel() {
+    this.canceled.emit();
+  }
+
   onSubmit($event: Event) {
-    this.stockSaved.emit(this.stockForm.value);
+    this.saved.emit(this.stockForm.value);
   }
 }

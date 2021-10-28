@@ -1,5 +1,4 @@
 <div *ngIf="stock">
-  <h2>Edit {{ stock.ticker }}</h2>
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit($event)">
     <mat-form-field appearance="fill">
       <!-- TODO: ngModel is Deprecated; but could not figure out how to get working w/o -->
@@ -65,6 +64,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+    <div>
     <button
       mat-raised-button
       color="primary"
@@ -72,6 +72,14 @@
       [disabled]="!stockForm.valid"
     >
       Submit
+    </button> &nbsp;
+    <button
+      mat-raised-button
+      color="basic"
+      type="cancel"
+    >
+      Cancel
     </button>
+  </div>
   </form>
 </div>
