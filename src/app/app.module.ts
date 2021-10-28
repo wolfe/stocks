@@ -23,6 +23,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MatSelectModule } from '@angular/material/select';
 import { StockDetailComponent } from './stocks/components/stock-detail.component';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { StockDetailComponent } from './stocks/components/stock-detail.component
     MatInputModule,
     MatSelectModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent]
