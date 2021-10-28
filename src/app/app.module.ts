@@ -22,13 +22,15 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { MatSelectModule } from '@angular/material/select';
+import { StockDetailComponent } from './stocks/components/stock-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StocksComponent,
     MessagesComponent,
-    StockFormComponent
+    StockFormComponent,
+    StockDetailComponent
   ],
   imports: [
     BrowserModule,
