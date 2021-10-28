@@ -31,7 +31,7 @@ export class StockDetailComponent implements OnInit {
     if (id) {
       this.stockService.getStock(id).subscribe((stock) => (this.stock = stock));
     } else {
-      this.stock = new StockObj({id: 0, shares: 0, ticker: "", basis: 0, currency: Currency.CAD, description: "", datePurchased: "2021-01-01"})
+      this.stock = undefined;
     }
   }
 
