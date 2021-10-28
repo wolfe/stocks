@@ -22,7 +22,6 @@ export class StockFormComponent implements OnInit {
   });
 
   public Currency = Currency;
-  submitted = false;
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -40,8 +39,6 @@ export class StockFormComponent implements OnInit {
   }
 
   onSubmit($event: Event) {
-    this.submitted = true;
-    /* TODO --- Ask Yurii. */
     if (this.stock) {
       this.stockService
         .updateStock(new StockObj({ id: this.stock.id, ...this.stockForm.value }))

@@ -7,5 +7,5 @@ enum Currency {USD, CAD}
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'Stocks';
+  title = 'A toy app to keep track of stock bases in two currencies';
 }

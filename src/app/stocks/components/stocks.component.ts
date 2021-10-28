@@ -26,10 +26,6 @@ export class StocksComponent implements OnInit {
       stock => this.stocks = [...this.stocks, stock])
   }
 
-  open(id: number): void {
-
-  }
-
   delete(stock: Stock): void {
     this.stockService.deleteStock(stock.id).subscribe(
       _ => { this.stocks = this.stocks.filter(o => o.id !== stock.id)});

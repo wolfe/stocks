@@ -1,39 +1,76 @@
-<h1>Stock Form</h1>
-<form *ngIf="stock" [formGroup]="stockForm" (ngSubmit)="onSubmit($event)">
+<div *ngIf="stock">
+  <h1>Edit {{ stock.ticker }}</h1>
+  <form [formGroup]="stockForm" (ngSubmit)="onSubmit($event)">
+    <mat-form-field appearance="fill">
+      <mat-label>Ticker</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="stock.ticker"
+        formControlName="ticker"
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Ticker</mat-label>
-    <input matInput type="text" [(ngModel)]="stock.ticker" formControlName="ticker">
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Shares</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="stock.shares"
+        formControlName="shares"
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Shares</mat-label>
-    <input matInput type="text" [(ngModel)]="stock.shares" formControlName="shares">
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="stock.description"
+        formControlName="description"
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Description</mat-label>
-    <input matInput type="text" [(ngModel)]="stock.description" formControlName="description">
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Currency</mat-label>
+      <mat-select [(ngModel)]="stock.currency" formControlName="currency">
+        <mat-option
+          *ngFor="let currency of Currency | keyvalue"
+          [value]="currency.key"
+          >{{ currency.value }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Currency</mat-label>
-    <mat-select [(ngModel)]="stock.currency" formControlName="currency">
-      <mat-option *ngFor="let currency of Currency | keyvalue" [value]="currency.key">{{currency.value}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Basis</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="stock.basis"
+        formControlName="basis"
+      />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Basis</mat-label>
-    <input matInput type="text" [(ngModel)]="stock.basis" formControlName="basis">
-  </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Purchased</mat-label>
+      <input
+        matInput
+        [(ngModel)]="stock.datePurchased"
+        [matDatepicker]="picker"
+        formControlName="datePurchased"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Purchased</mat-label>
-    <input matInput [(ngModel)]="stock.datePurchased" [matDatepicker]="picker" formControlName="datePurchased">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit" [disabled]="!stockForm.valid">Submit</button>
-</form>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!stockForm.valid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
