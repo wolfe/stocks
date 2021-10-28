@@ -10,7 +10,7 @@ export interface Stock {
   datePurchased: string;
 }
 
-/* TODO: Yurii - do we need this object? */
+/* TODO: Do we need this object --- used in stock-form.component.ts */
 export class StockObj implements Stock {
   public id: number;
   public shares: number;

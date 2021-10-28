@@ -5,10 +5,23 @@ import { ActivatedRoute } from '@angular/router';
 import { StockService } from '../services/stock.service';
 import { Location } from '@angular/common';
 
+// TODO:  Is this component doing too much? -- Separate form from fetching content; use the @Input
+// TODO:  How to use the same form for create & update?
+
 @Component({
   selector: 'app-stock-form',
   templateUrl: './stock-form.component.html',
+  styles: [
+    `
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    `,
+  ],
 })
+
 export class StockFormComponent implements OnInit {
   @Input() stock?: Stock;
 
@@ -18,7 +31,7 @@ export class StockFormComponent implements OnInit {
     basis: new FormControl(),
     currency: new FormControl(),
     description: new FormControl(),
-    datePurchased: new FormControl(),
+    datePurchased: new FormControl(), // TODO: Could not figure out how to properly populate the date (currently does time-zone)
   });
 
   public Currency = Currency;
@@ -41,7 +54,9 @@ export class StockFormComponent implements OnInit {
   onSubmit($event: Event) {
     if (this.stock) {
       this.stockService
-        .updateStock(new StockObj({ id: this.stock.id, ...this.stockForm.value }))
+        .updateStock(
+          new StockObj({ id: this.stock.id, ...this.stockForm.value })
+        )
         .subscribe(() => this.goBack());
     } else {
       this.stockService

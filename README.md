@@ -2,6 +2,10 @@
 
 A small app based on the Heroes tutorial to experiment with different Angular features.
 
+## TODO:
+
+* Add NgRx
+
 ## References
 
 ### Undo/redo

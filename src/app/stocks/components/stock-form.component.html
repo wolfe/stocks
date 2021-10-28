@@ -1,7 +1,8 @@
 <div *ngIf="stock">
-  <h1>Edit {{ stock.ticker }}</h1>
+  <h2>Edit {{ stock.ticker }}</h2>
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit($event)">
     <mat-form-field appearance="fill">
+      <!-- TODO: ngModel is Deprecated; but could not figure out how to get working w/o -->
       <mat-label>Ticker</mat-label>
       <input
         matInput
