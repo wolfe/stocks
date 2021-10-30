@@ -1,5 +1,5 @@
 import { Currency, Stock } from './../stock';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -30,6 +30,17 @@ export class StockFormComponent {
     datePurchased: new FormControl(), // TODO: Could not figure out how to properly populate the date (currently does time-zone)
   });
 
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['stock']) {
+      this.stockForm.get('shares')?.setValue(this.stock?.shares);
+      this.stockForm.get('ticker')?.setValue(this.stock?.ticker);
+      this.stockForm.get('basis')?.setValue(this.stock?.basis);
+      this.stockForm.get('currency')?.setValue(this.stock?.currency);
+      this.stockForm.get('description')?.setValue(this.stock?.description);
+      this.stockForm.get('datePurchased')?.setValue(this.stock?.datePurchased);
+    }
+  }
+
   public Currency = Currency;
   constructor(
     private formBuilder: FormBuilder,
@@ -39,6 +50,7 @@ export class StockFormComponent {
     // Unused
     return (this.stock && new Date(this.stock.datePurchased)) || new Date();
   }
+
 
   onCancel() {
     this.canceled.emit();

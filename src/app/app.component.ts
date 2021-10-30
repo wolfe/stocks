@@ -2,7 +2,7 @@ import { StockService } from './stocks/services/stock.service';
 import { addStock, listStocks } from './state/stocks.actions';
 import { selectStocks } from './state/stocks.selectors';
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 enum Currency {USD, CAD}
 

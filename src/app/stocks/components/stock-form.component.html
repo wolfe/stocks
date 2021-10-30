@@ -1,12 +1,10 @@
-<div *ngIf="stock">
+<div>
   <form [formGroup]="stockForm" (ngSubmit)="onSubmit($event)">
     <mat-form-field appearance="fill">
-      <!-- TODO: ngModel is Deprecated; but could not figure out how to get working w/o -->
       <mat-label>Ticker</mat-label>
       <input
         matInput
         type="text"
-        [(ngModel)]="stock.ticker"
         formControlName="ticker"
       />
     </mat-form-field>
@@ -16,7 +14,6 @@
       <input
         matInput
         type="text"
-        [(ngModel)]="stock.shares"
         formControlName="shares"
       />
     </mat-form-field>
@@ -26,14 +23,13 @@
       <input
         matInput
         type="text"
-        [(ngModel)]="stock.description"
         formControlName="description"
       />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Currency</mat-label>
-      <mat-select [(ngModel)]="stock.currency" formControlName="currency">
+      <mat-select formControlName="currency">
         <mat-option
           *ngFor="let currency of Currency | keyvalue"
           [value]="currency.key"
@@ -47,7 +43,6 @@
       <input
         matInput
         type="text"
-        [(ngModel)]="stock.basis"
         formControlName="basis"
       />
     </mat-form-field>
@@ -56,7 +51,6 @@
       <mat-label>Purchased</mat-label>
       <input
         matInput
-        [(ngModel)]="stock.datePurchased"
         [matDatepicker]="picker"
         formControlName="datePurchased"
       />
