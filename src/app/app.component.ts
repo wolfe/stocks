@@ -27,6 +27,9 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // data from the server or event mock data should be bring to the component with using Effects
+    // i.e: Server -> service -> Effect's method -> store (reducer) -> selector in component
+    
     this.stocksService
       .getStocks()
       .subscribe((stocks) => this.store.dispatch(listStocks({ stocks })));
