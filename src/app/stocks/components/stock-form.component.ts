@@ -30,22 +30,41 @@ export class StockFormComponent {
     datePurchased: new FormControl(), // TODO: Could not figure out how to properly populate the date (currently does time-zone)
   });
 
+  stockForm1: FormGroup;
+  Currency = Currency;
+  // good practice is to define properties under the constructor, and methods below --
+  // -- default component methods in the order when it works in life cycle hooks and custom methods (but that up to you)
+
+  constructor(
+    private formBuilder: FormBuilder,
+  ) {
+    // the same as for stockForm but with using FormBuilder - just to show you another way
+    this.stockForm1 = this.formBuilder.group({
+      shares: [''],
+      ticker: [''],
+      basis: [''],
+      currency: [''],
+      description: [''],
+      datePurchased: ['']
+    })
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if(changes['stock']) {
-      this.stockForm.get('shares')?.setValue(this.stock?.shares);
-      this.stockForm.get('ticker')?.setValue(this.stock?.ticker);
-      this.stockForm.get('basis')?.setValue(this.stock?.basis);
-      this.stockForm.get('currency')?.setValue(this.stock?.currency);
-      this.stockForm.get('description')?.setValue(this.stock?.description);
-      this.stockForm.get('datePurchased')?.setValue(this.stock?.datePurchased);
+      // better  - use .patchValues or .setValues methods for the formGroup instead of set value for each field separatelly
+      // note that .patchValues works as patch (set values only for provided controls - more flexible)
+      this.stockForm.patchValue({
+        shares: this.stock?.shares,
+        ticker: this.stock?.ticker,
+        basis: this.stock?.basis,
+        currency: this.stock?.currency,
+        description: this.stock?.description,
+        datePurchased: this.stock?.datePurchased
+      })
     }
   }
 
-  public Currency = Currency;
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {}
-
+  
   public getPurchasedDate() {
     // Unused
     return (this.stock && new Date(this.stock.datePurchased)) || new Date();
