@@ -1,30 +1,48 @@
 import { StockService } from './stocks/services/stock.service';
 import { addStock, listStocks } from './state/stocks.actions';
-import { selectStocks } from './state/stocks.selectors';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
+import * as stockSelector from './state/stocks.selectors';
+import { Observable, Subscription } from 'rxjs';
+import { AppState } from './state/app.state';
+import { Stock } from './stocks/stock';
 
-enum Currency {USD, CAD}
+enum Currency {
+  USD,
+  CAD,
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
+export class AppComponent implements OnInit, OnDestroy {
+  title = 'A toy app to keep track of stock bases in two currencies';
+  stocks$: Observable<ReadonlyArray<Stock>>;
+  subs = new Subscription();
 
-export class AppComponent implements OnInit {
   constructor(
-    private store: Store,
+    private store: Store<AppState>,
     private stocksService: StockService
   ) {}
 
-  title = 'A toy app to keep track of stock bases in two currencies';
-  stocks$ = this.store.select(selectStocks);
-
-  onAdd(stockId: number) {
-    this.store.dispatch(addStock({ stockId}));
+  ngOnInit() {
+    this.stocksService
+      .getStocks()
+      .subscribe((stocks) => this.store.dispatch(listStocks({ stocks })));
+    this.stocks$ = this.store.pipe(select(stockSelector.getStocks));
+    this.subs.add(
+      this.stocks$.subscribe((stocks) => {
+        console.log(stocks);
+      })
+    );
   }
 
-  ngOnInit() {
-    this.stocksService.getStocks().subscribe((stocks) => (this.store.dispatch(listStocks({ stocks}))));
+  onAdd(stockId: number) {
+    this.store.dispatch(addStock({ stockId }));
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 }

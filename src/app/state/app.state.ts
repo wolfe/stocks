@@ -1,5 +1,6 @@
 import { Stock } from "../stocks/stock";
+import * as fromStockReducer from './stocks.reducer';
 
 export interface AppState {
-  stocks: ReadonlyArray<Stock>;
+  stocks: fromStockReducer.StocksState;
 }
